@@ -1,0 +1,23 @@
+
+.main{
+    top: 18%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+.todo_input{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo_text_filed{
+    width: 100%;
+}
+.todo_butoon{
+    width: 100px;
+}
