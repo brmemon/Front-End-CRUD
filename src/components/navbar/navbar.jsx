@@ -8,7 +8,10 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import "./navbar.css";
+import { authActions } from "../../store";
+import { useDispatch } from "react-redux";
 const Navbar = () => {
+  const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -24,6 +27,11 @@ const Navbar = () => {
     p: 4,
     textAlign: "center",
   };
+
+const logOut = () => {
+  sessionStorage.clear("id")
+  dispatch(authActions?.logOut());
+}
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -59,7 +67,9 @@ const Navbar = () => {
                       </Button>
                       <Button
                         className="logout_button_YesNo"
-                        variant="contained">
+                        variant="contained"
+                        onClick={logOut}
+                        >
                         Yes
                       </Button>
                     </div>

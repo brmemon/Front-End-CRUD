@@ -71,7 +71,7 @@ const SignUp = () => {
         </div>
         <p className="sinUp_text">
           Already Have An Account?
-          <a className="link" href="/auth/Login">
+          <a className="link" href="/">
             Log In
           </a>
         </p>
