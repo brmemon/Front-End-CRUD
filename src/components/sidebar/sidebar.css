@@ -1,0 +1,13 @@
+.modal_first {
+    /* position: absolute; */
+    height: 100vh;
+    background-color: #1976d2;
+    width: 20%;
+}
+
+.sidebar_button {
+    background-color: white !important;
+    /* padding-top: 50px; */
+    color: #1976d2;
+    width: 70%;
+}

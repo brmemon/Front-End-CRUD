@@ -19,7 +19,7 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/api/v1/signin", input)
+      .post("http://localhost:5000/api/user/signin", input)
       .then((response) => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {

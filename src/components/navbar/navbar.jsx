@@ -8,8 +8,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import "./navbar.css";
-import { authActions } from "../../store";
 import { useDispatch } from "react-redux";
+import { authActions } from "../../store";
 const Navbar = () => {
   const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
@@ -49,7 +49,7 @@ const logOut = () => {
           </Typography>
           <Box sx={{ display: { xs: "block", sm: "block" } }}>
             <div>
-              <Button onClick={handleOpen} sx={{ color: "white" }}>
+              <Button onClick={handleOpen} style={{ color: "#1976d2", backgroundColor:"white" }}>
                 Log Out
               </Button>
               <Modal open={open} onClose={handleClose}>

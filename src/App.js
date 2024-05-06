@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import Login from './auth/Login/login'
 import SignUp from './auth/SignUp.jsx/signUp'
-import Todo from './auth/Todo'
+import Todo from './auth/Todo/todo'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux";
-import { authActions } from "./store"
 import { CircularProgress } from "@mui/material"
+import Profile from "./Profile/profile"
+import { authActions } from "./store"
 
 const App = () => {
     const dispatch = useDispatch();
@@ -26,6 +27,8 @@ const App = () => {
     const location = window.location.pathname
     return (
         <div>
+           {/* <Sidebar></Sidebar>
+            <PasswordChange></PasswordChange>  */}
             {isLoading ? (
                 <div style={{ display: "flex", height: "100vh", width: "100%", alignItems: "center", justifyContent: "center" }}><CircularProgress /></div>
             ) : (
@@ -34,6 +37,7 @@ const App = () => {
                         <Route path={'/'} element={isLoggedIn ? <Todo /> : <Navigate to={'/auth/login'} />} />
                         <Route path='/auth/login' element={<Login />} />
                         <Route path='/auth/SignUp' element={<SignUp />} />
+                        <Route path='/Profile' element={<Profile />} />
                         <Route path={location} element={isLoggedIn ? <Navigate to={'/'} /> : <Navigate to={'/auth/login'} />} />
                     </Routes>
                 </Router>
