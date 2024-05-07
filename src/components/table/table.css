@@ -39,6 +39,11 @@
     flex-direction: column;
 }
 
+.name_icon{
+    display: flex;
+    justify-content: space-between;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
