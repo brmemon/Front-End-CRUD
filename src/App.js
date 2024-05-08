@@ -19,15 +19,13 @@ const App = () => {
         setTimeout(() => {
             setIsLoading(false);
         }, 1000);
-
-        console.log(sessionStorage.getItem("id"));
         dispatch(authActions?.login());
     }, [dispatch]);
 
     const location = window.location.pathname
     return (
         <div>
-           {/* <Sidebar></Sidebar>
+            {/* <Sidebar></Sidebar>
             <PasswordChange></PasswordChange>  */}
             {isLoading ? (
                 <div style={{ display: "flex", height: "100vh", width: "100%", alignItems: "center", justifyContent: "center" }}><CircularProgress /></div>

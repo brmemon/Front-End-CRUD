@@ -25,7 +25,6 @@ const Login = () => {
         if (responseData === "Sign In Successfull") {
           sessionStorage.setItem("id", response.data.others._id);
           dispatch(authActions?.login());
-          console.log(response.data.others._id);
           toast.success(responseData);
           history("/");
           setInput({ email: "", password: "" });
