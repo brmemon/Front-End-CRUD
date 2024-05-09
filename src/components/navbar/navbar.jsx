@@ -8,13 +8,13 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import "./navbar.css";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
-  const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const history = useNavigate();
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -28,10 +28,12 @@ const Navbar = () => {
     textAlign: "center",
   };
 
-const logOut = () => {
-  sessionStorage.clear("id")
-  dispatch(authActions?.logOut());
-}
+  const logOut = () => {
+    sessionStorage.clear("id");
+    console.log(sessionStorage.clear("id"), "logout ka waqt ka console");
+    history("/auth/Login")
+  }
+
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -49,7 +51,7 @@ const logOut = () => {
           </Typography>
           <Box sx={{ display: { xs: "block", sm: "block" } }}>
             <div>
-              <Button onClick={handleOpen} style={{ color: "#1976d2", backgroundColor:"white" }}>
+              <Button onClick={handleOpen} style={{ color: "#1976d2", backgroundColor: "white" }}>
                 Log Out
               </Button>
               <Modal open={open} onClose={handleClose}>
@@ -69,7 +71,7 @@ const logOut = () => {
                         className="logout_button_YesNo"
                         variant="contained"
                         onClick={logOut}
-                        >
+                      >
                         Yes
                       </Button>
                     </div>

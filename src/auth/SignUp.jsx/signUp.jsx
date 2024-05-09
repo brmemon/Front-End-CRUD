@@ -6,7 +6,7 @@ import axios from "axios";
 import "../../auth/auth.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const history = useNavigate();
@@ -25,6 +25,7 @@ const SignUp = () => {
           toast.error(response.data.message);
         } else {
           toast.success(response.data.message);
+          sessionStorage.setItem("id", response.data.user._id);
           setInput({ username: "", email: "", password: "" });
           history("/");
         }
@@ -71,9 +72,9 @@ const SignUp = () => {
         </div>
         <p className="sinUp_text">
           Already Have An Account?
-          <a className="link" href="/">
+          <Link to="/auth/login" className="link">
             Log In
-          </a>
+          </Link>
         </p>
       </div>
     </div>

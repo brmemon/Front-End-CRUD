@@ -24,9 +24,10 @@ const Table = ({ data, setData, updateArray, setUpdateArray }) => {
 
   const upd = (index) => {
     const updatedArray = data[index];
-    setUpdateArray(updatedArray);
+    setUpdateArray(updatedArray); 
   };
 
+  
   return (
     <div className="main_card_div">
       {data.map((item, index) => (
