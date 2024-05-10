@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../components/navbar/navbar";
 import { Button, CircularProgress, TextField } from "@mui/material";
 import "./todo.css";
-import Table from "../../components/table";
+import Table from "../components/table";
 import { ToastContainer, toast } from "react-toastify";
-import Sidebar from "../../components/sidebar/sidebar";
+import Sidebar from "../components/sidebar/sidebar";
 import axios from "axios";
 
 const Todo = () => {
@@ -12,6 +12,8 @@ const Todo = () => {
   const [input, setInput] = useState({ title: "", body: "" });
   const [array, setArray] = useState([]);
   const [updateArray, setUpdateArray] = useState(null);
+  const [updateIndex, setUpdateIndex] = useState()
+
 
   const change = (e) => {
     const { name, value } = e.target;
@@ -48,13 +50,16 @@ const Todo = () => {
       toast.error("All Fields Are Required");
       return;
     }
-
     try {
       await axios.put(`http://localhost:5000/api/todo/update/${updateArray._id}`, {
         title: input.title,
         body: input.body
       }).then((response) => {
         toast.success(response.data.message);
+        let tempData = [...array]
+        tempData[updateIndex] = response.data.list
+        console.log(response.data.list);
+        setArray(tempData)
         setUpdateArray();
         setInput({ title: "", body: "" });
       })
@@ -82,7 +87,6 @@ const Todo = () => {
       setInput({ title: updateArray?.title, body: updateArray?.body });
     }
   }, [updateArray]);
-
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
@@ -122,6 +126,8 @@ const Todo = () => {
           )}
 
           <Table
+            arrayIndex={updateIndex}
+            setArrayIndex={setUpdateIndex}
             data={array}
             setData={setArray}
             updateArray={updateArray}

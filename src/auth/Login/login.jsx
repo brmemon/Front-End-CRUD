@@ -21,7 +21,7 @@ const Login = () => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {
           sessionStorage.setItem("id", response.data.others._id);
-          // console.log("id", response.data.others._id);
+          console.log("Login page id", response.data.others._id);
           toast.success(responseData);
           history("/");
           setInput({ email: "", password: "" });
@@ -36,7 +36,7 @@ const Login = () => {
       <ToastContainer />
       <div className="sub_container_two">
         <h1 className="login_logo"> Login </h1>
-        <h2 className="login_welcome">Welcome Back! Login To Your Account</h2>
+        <h2 className="login_welcome"> Welcome Back! Login To Your Account </h2>
         <div className="login_input">
           <Input
             label="Email"
@@ -57,21 +57,17 @@ const Login = () => {
             value={input.password}
           />
         </div>
+
         <div className="MainButton_Parent">
-          <Button className="button" variant="contained" onClick={submit}>
-            Login
-          </Button>
+          <Button className="button" variant="contained" onClick={submit}> Login </Button>
         </div>
+
         <div style={{ margin: "10px 0" }}>
-          <Link to="/auth/Forgot/Password" className="link">
-            Forgot Password
-          </Link>
+          <Link to="/auth/Forgot/Password" className="link"> Forgot Password </Link>
         </div>
-        <p className="sinUp_text">
-          Don't Have An Account?
-          <Link to="/auth/SignUp" className="link">
-            Sign Up
-          </Link>
+
+        <p className="sinUp_text"> Don't Have An Account?
+          <Link to="/auth/SignUp" className="link"> Sign Up </Link>
         </p>
       </div>
     </div>
