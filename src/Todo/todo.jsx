@@ -58,7 +58,7 @@ const Todo = () => {
         toast.success(response.data.message);
         let tempData = [...array]
         tempData[updateIndex] = response.data.list
-        console.log(response.data.list);
+        // console.log(response.data.list);
         setArray(tempData)
         setUpdateArray();
         setInput({ title: "", body: "" });

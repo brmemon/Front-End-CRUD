@@ -26,3 +26,41 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import PrivateRoutes from './router/privateRoute';
+
+// const App = () => {
+
+//     return (
+//         <>
+//             <PrivateRoutes />
+//         </>
+//     );
+// };
+
+// export default App;

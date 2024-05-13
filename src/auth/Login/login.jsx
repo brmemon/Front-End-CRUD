@@ -16,14 +16,15 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/api/user/signin", input)
+      .post(`${process.env.VERCEL_BACKEND_URL}/api/user/signin`, input)
       .then((response) => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {
           sessionStorage.setItem("id", response.data.others._id);
           console.log("Login page id", response.data.others._id);
-          toast.success(responseData);
+          console.log("Login page response", responseData);
           history("/");
+          toast.success(responseData);
           setInput({ email: "", password: "" });
         } else {
           toast.error(responseData);
