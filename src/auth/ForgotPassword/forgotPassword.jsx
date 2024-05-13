@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import Input from "../../components/Input";
 import "../../auth/auth.css";
@@ -29,7 +29,11 @@ const ForgotPassword = () => {
         }
       });
   };
-
+  let uid;
+  useEffect(() => {
+    uid = sessionStorage.getItem('id')
+    if (uid) return (history('/'))
+  })
   return (
     <div className="main_container">
       <ToastContainer />

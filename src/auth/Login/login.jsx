@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import Input from "../../components/Input";
 import "../../auth/auth.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+
 const Login = () => {
   const history = useNavigate();
   const [input, setInput] = useState({ email: "", password: "" });
@@ -16,7 +17,7 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .post(`${process.env.VERCEL_BACKEND_URL}/api/user/signin`, input)
+      .post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/signin`, input)
       .then((response) => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {
@@ -31,6 +32,11 @@ const Login = () => {
         }
       });
   };
+  let uid;
+  useEffect(() => {
+    uid = sessionStorage.getItem('id')
+    if (uid) return (history('/'))
+  })
 
   return (
     <div className="main_container">

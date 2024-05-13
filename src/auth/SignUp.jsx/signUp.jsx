@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import Input from "../../components/Input";
@@ -31,6 +31,13 @@ const SignUp = () => {
         }
       });
   };
+
+  let uid;
+  useEffect(() => {
+    uid = sessionStorage.getItem('id')
+    if (uid) return (history('/'))
+  })
+
   return (
     <div className="main_container">
       <ToastContainer />
