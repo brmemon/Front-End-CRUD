@@ -27,7 +27,7 @@ const Todo = () => {
     } else {
       try {
         await axios
-          .post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/todo/add`, {
+          .post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/todo/add`, {
             title: input.title,
             body: input.body,
             id: id,
@@ -51,7 +51,7 @@ const Todo = () => {
       return;
     }
     try {
-      await axios.put(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/todo/update/${updateArray._id}`, {
+      await axios.put(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/todo/update/${updateArray._id}`, {
         title: input.title,
         body: input.body
       }).then((response) => {
@@ -73,7 +73,7 @@ const Todo = () => {
   /// GET
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/todo/${id}`)
+      .get(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/todo/${id}`)
       .then((response) => {
         setArray(response.data.todo);
       }).catch((err) => {

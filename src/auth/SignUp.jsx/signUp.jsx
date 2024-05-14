@@ -19,7 +19,7 @@ const SignUp = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/register`, input)
+      .post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/register`, input)
       .then((response) => {
         if (response.data.message === "User Already Exists") {
           toast.error(response.data.message);
