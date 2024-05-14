@@ -11,7 +11,7 @@ const Table = ({ data, setData, updateArray, setUpdateArray, arrayIndex, setArra
 
   const del = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todo/delete/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/todo/delete/${id}`, {
         data: { id: userId }
       });
       const updatedData = data.filter(item => item._id !== id);

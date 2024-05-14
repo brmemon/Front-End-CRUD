@@ -17,7 +17,7 @@ const Profile = () => {
     const submit = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:5000/api/user/forget/password", input)
+            .post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/forget/password`, input)
             .then((response) => {
                 const responseData = response.data.message;
                 if (responseData === "Password Changed Successfully") {
@@ -36,8 +36,8 @@ const Profile = () => {
             <ToastContainer />
             <Navbar />
             <div style={{ display: "flex", width: "100%" }}>
-                <Sidebar text={"Profile"}/>
-                <div className="login_input" style={{ display: "flex", flexDirection: "column", marginTop:"150px", alignItems: "center", width:"80%"}}>
+                <Sidebar text={"Profile"} />
+                <div className="login_input" style={{ display: "flex", flexDirection: "column", marginTop: "150px", alignItems: "center", width: "80%" }}>
                     <Input
                         label="Email"
                         type={"email"}
@@ -66,7 +66,7 @@ const Profile = () => {
                         value={input.newPassword}
                     />
                     <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Button style={{width: "20%" }} variant="contained" onClick={submit}>
+                        <Button style={{ width: "20%" }} variant="contained" onClick={submit}>
                             update
                         </Button>
                     </div>

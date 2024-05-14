@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/api/user/signin", input)
+      .post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/signin`, input)
       .then((response) => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {
