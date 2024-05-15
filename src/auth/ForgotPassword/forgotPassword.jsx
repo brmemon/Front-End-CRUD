@@ -1,68 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@mui/material";
 import Input from "../../components/Input";
 import "../../auth/auth.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-const ForgotPassword = () => {
-  const history = useNavigate();
-  const [input, setInput] = useState({ email: "", password: "" });
-  const change = (e) => {
-    const { name, value } = e.target;
-    setInput({ ...input, [name]: value });
+import OTP from "../OTP/otp";
+// import React, { useState } from "react";
+
+const ForgotPassword = ({email, setEmail}) => {
+  const history = useNavigate()
+  // const [email, setEmail] = useState(null);
+  // const [otpForm, setOtpForm] = useState(null);
+
+  const sendOTP = async () => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/send/email`, { email });
+      const responseData = response.data.message;
+      if (responseData === "Success Please Check Your Email") {
+        toast.success(responseData);
+        // setOtpForm(false)
+        history("/auth/Otp", { email })
+        // setEmail("");
+      } else {
+        toast.error(responseData);
+      }
+    } catch (error) {
+      toast.error("An error occurred while sending OTP.");
+    }
   };
 
-  const submit = async (e) => {
-    e.preventDefault();
-    await axios
-      .post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/signin`, input)
-      .then((response) => {
-        const responseData = response.data.message;
-        if (responseData === "Sign In Successfull") {
-          sessionStorage.setItem("id", response.data.others._id);
-          toast.success(responseData);
-          history("/");
-          setInput({ email: "", password: "" });
-        } else {
-          toast.error(responseData);
-        }
-      });
-  };
-  let uid;
-  useEffect(() => {
-    uid = sessionStorage.getItem('id')
-    if (uid) return (history('/'))
-  })
   return (
-    <div className="main_container">
-      <ToastContainer />
-      <div className="sub_container_two">
-        <h1 className="login_logo"> Forgot Password </h1>
-        <div className="login_input">
-          <Input
-            label="Email"
-            type={"email"}
-            className={"input"}
-            onChange={change}
-            name="email"
-            id="email"
-            value={input.email}
-          />
+    <>
+      {/* {otpForm ? */}
+      <div className="main_container" >
+        <ToastContainer />
+        <div className="sub_container_two">
+          <h1 className="login_logo"> Forgot Password </h1>
+          <div className="login_input">
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input"
+              name="email"
+              id="email"
+            />
+          </div>
+          <div className="MainButton_Parent">
+            <Button className="button" variant="contained" onClick={sendOTP}>
+              Send OTP
+            </Button>
+          </div>
         </div>
-        <div className="MainButton_Parent">
-          <Button className="button" variant="contained" onClick={submit}>
-            Forgot
-          </Button>
-        </div>
-        <p className="sinUp_text">
-          Back To Login
-          <Link className="link" to="/auth/login">
-            Login
-          </Link>
-        </p>
       </div>
-    </div>
+      {/* : <OTP />
+      } */}
+    </>
   );
 };
 

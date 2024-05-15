@@ -17,7 +17,7 @@ const Profile = () => {
     const submit = async (e) => {
         e.preventDefault();
         await axios
-            .post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/forget/password`, input)
+            .post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/change/password`, input)
             .then((response) => {
                 const responseData = response.data.message;
                 if (responseData === "Password Changed Successfully") {

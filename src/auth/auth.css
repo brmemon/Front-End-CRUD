@@ -1,4 +1,4 @@
-.sub_container_two   {
+.sub_container_two {
     background-color: rgb(230, 230, 230);
     padding: 50px;
     border-radius: 10%;
@@ -22,7 +22,7 @@
     height: 14%;
 }
 
-.login_logo{
+.login_logo {
     color: #1976d2;
     font-size: 40px;
 
@@ -56,42 +56,53 @@
     text-align: center;
 }
 
-.login_welcome{
+.login_welcome {
     font-size: 14px;
     color: #6c5959;
     font-weight: 600;
     padding: 15px 0;
 }
 
-.MainButton_Parent{
+.MainButton_Parent {
     margin-bottom: 10px;
     width: 100%;
-    
+
 }
 
-.button{
+.button {
     width: 70%;
 }
 
-.login_input{
+.login_input {
     width: 100%;
     gap: 4%;
     padding: 15px 0;
 }
 
-.input{
-   margin: 5px 0 !important;
+.input {
+    margin: 5px 0 !important;
 }
 
-.sinUp_text{
+.sinUp_text {
     color: #6c5959;
     font-weight: 600;
     font-size: 14px;
 }
 
-.link{
-   color: #1976d2;
-   padding-left: 5px;
+.link {
+    color: #1976d2;
+    padding-left: 5px;
+}
+
+.sub_container_otp {
+    width: 35%;
+    background-color: rgb(230, 230, 230);
+    padding: 50px;
+    border-radius: 10%;
+}
+
+.otp_input {
+    width: 100%;
 }
 
 
