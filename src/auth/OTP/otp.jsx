@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@mui/material";
 import Input from "../../components/Input";
 import "../../auth/auth.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { MuiOtpInput } from 'mui-one-time-password-input';
-import { useLocation } from 'react-router-dom'; // Import useLocation hook
+import { useNavigate } from 'react-router-dom';
 import NewPassword from '../NewPassword/newPassword';
 
-const Otp = ({email}) => {
+const Otp = ({ email }) => {
     const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const location = useLocation();
-    console.log("location: ", location)
-    // const { email } = location.state || {};
-    console.log(otp);
-    console.log(newPassword);
-    console.log(email);
-    useEffect(() => {
-        console.log("Email:", email);
-    }, [email]);
+    const history = useNavigate()
 
     const handleChange = (newValue) => {
         setOtp(newValue);
@@ -46,13 +38,13 @@ const Otp = ({email}) => {
                     toast.success(responseData);
                     setOtp('');
                     setNewPassword('');
+                    history("/auth/login")
                 } else {
                     toast.error(responseData);
                 }
             })
         } catch (error) {
-            console.error("Error sending OTP:", error);
-            toast.error("An error occurred while sending OTP.");
+            toast.error(error.response.data.message);
         }
     };
 

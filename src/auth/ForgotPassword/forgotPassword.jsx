@@ -17,7 +17,7 @@ const ForgotPassword = ({email, setEmail}) => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/send/email`, { email });
       const responseData = response.data.message;
-      if (responseData === "Success Please Check Your Email") {
+      if (responseData === "Success! Please check your email") {
         toast.success(responseData);
         // setOtpForm(false)
         history("/auth/Otp", { email })
