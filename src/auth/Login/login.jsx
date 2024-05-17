@@ -22,6 +22,8 @@ const Login = () => {
         const responseData = response.data.message;
         if (responseData === "Sign In Successfull") {
           sessionStorage.setItem("id", response.data.others._id);
+          console.log("Login page id", response.data.others._id);
+          console.log("Login page response", responseData);
           history("/");
           toast.success(responseData);
           setInput({ email: "", password: "" });
@@ -30,6 +32,7 @@ const Login = () => {
         }
       });
   };
+
   let uid;
   useEffect(() => {
     uid = sessionStorage.getItem('id')
