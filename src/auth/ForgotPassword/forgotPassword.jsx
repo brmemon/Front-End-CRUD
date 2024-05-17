@@ -8,25 +8,29 @@ import { Link, useNavigate } from "react-router-dom";
 import OTP from "../OTP/otp";
 // import React, { useState } from "react";
 
-const ForgotPassword = ({email, setEmail}) => {
+const ForgotPassword = ({ email, setEmail }) => {
   const history = useNavigate()
   // const [email, setEmail] = useState(null);
   // const [otpForm, setOtpForm] = useState(null);
 
   const sendOTP = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/send/email`, { email });
-      const responseData = response.data.message;
-      if (responseData === "Success! Please check your email") {
-        toast.success(responseData);
-        // setOtpForm(false)
-        history("/auth/Otp", { email })
-        // setEmail("");
-      } else {
-        toast.error(responseData);
-      }
+      await axios.post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/send/email`,
+        { email })
+        .then((response) => {
+          const responseData = response.data.message;
+          console.log(responseData, "frontend ResponseData");
+          if (responseData === "Success! Please check your email") {
+            toast.success(responseData);
+            history("/auth/Otp", { email })
+            // setEmail("");
+            console.log(email, "email state frontend");
+          } else {
+            toast.error(responseData);
+          }
+        });
     } catch (error) {
-      toast.error("An error occurred while sending OTP.");
+      toast.error(error.response.data.message);
     }
   };
 

@@ -26,16 +26,16 @@ const Otp = ({ email }) => {
             toast.error("All inputs are required");
             return;
         }
-        console.log("EMail: ", email)
+        console.log("EMail: ", { email: email })
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}${process.env.REACT_APP_BACKEND_PORT}/api/user/forgot/password`, {
+            await axios.post(`${process.env.REACT_APP_VERCEL_BACKEND_URL}/api/user/forgot/password`, {
                 otp: otp,
                 password: newPassword,
                 email: email
             }).then((response) => {
                 const responseData = response.data.message;
-                if (responseData === "Password Changed successfully") {
-                    toast.success(responseData);
+                if (responseData === "Password changed successfully") {
+                    toast.success(responseData, "hellow");
                     setOtp('');
                     setNewPassword('');
                     history("/auth/login")
